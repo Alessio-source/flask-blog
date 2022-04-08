@@ -127,7 +127,7 @@ main .right .add {
     text-decoration: none;
 }
 
-main .right .post a {
+main .right .post > a {
     display: inline-block;
     padding: 10px;
     margin: 15px 0;
@@ -135,6 +135,14 @@ main .right .post a {
     background-color: #a98561;
     text-decoration: none;
     color: white;
+    border-bottom-right-radius: 0;
+}
+
+main .right .post > .delete {
+    margin-left: -5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 5px;
 }
 
 main .right .chars{

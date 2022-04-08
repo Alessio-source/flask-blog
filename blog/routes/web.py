@@ -1,5 +1,5 @@
 from flask import render_template, redirect, flash, url_for, session, request, abort
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 from blog import app, db
 from blog.forms import LoginForm, PostForm, RegisterForm
 from blog.models import User, Post
@@ -108,6 +108,22 @@ def post_edit(post_id):
                 abort(403)
 
     return redirect(url_for('homepage'))
+
+@app.route('/admin/post/<int:post_id>/delete', methods=["POST", "GET"])
+@login_required
+def delete(post_id):
+    if current_user.role_id == 2 or current_user.role_id == 3:
+        post = Post.query.get_or_404(post_id)
+        if post.author_id == current_user.id or current_user.role_id == 2:
+            db.session.delete(post)
+            db.session.commit()
+            return redirect(url_for('posts'))
+        else: 
+            abort(403)
+
+    return redirect(url_for('homepage'))
+    
+                
 
 @app.route("/admin/users")
 def users():
