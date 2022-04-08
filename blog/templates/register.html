@@ -10,25 +10,26 @@
     
     <main class="container">
         
-        <form class="box" action="/register_post" method="get">
+        <form class="box" method="POST">
+            {{ form.hidden_tag() }}
             <h2>Registrazione</h2>
 
             <div class="input_container">
-                <label for="username">Nome utente</label>
-                <input type="text" name="username" id="username" placeholder="inserisci il tuo nome utente" required/>
+                {{ form.username.label }}
+                {{ form.username }}
             </div>
             
             <div class="input_container">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="inserisci la tua email" required/>
+                {{ form.email.label }}
+                {{ form.email }}
             </div>
 
             <div class="input_container">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="inserisci la tua password" required/>
+                {{ form.password.label }}
+                {{ form.password }}
             </div>
 
-            <input type="submit" value="registrati" />
+            {{ form.submit }}
 
             <a href="/login">Non hai già un account? accedi!</a>
         </form>

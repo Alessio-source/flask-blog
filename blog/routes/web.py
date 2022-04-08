@@ -1,7 +1,7 @@
 from flask import render_template, redirect, flash, url_for, session
 from flask_login import current_user, login_user, logout_user
 from blog import app, db
-from blog.forms import LoginForm, PostForm
+from blog.forms import LoginForm, PostForm, RegisterForm
 from blog.models import User, Post
 import datetime
 
@@ -30,9 +30,18 @@ def logout():
     logout_user()
     return redirect(url_for('homepage'))
 
-@app.route("/register")
+@app.route("/register", methods=["POST", "GET"])
 def register():
-    return render_template("register.html", current_user=current_user)
+    if current_user.is_authenticated:
+        return redirect(url_for('homepage'))
+    form = RegisterForm()
+    if form.validate_on_submit():
+        password = User.password_hash(form.password.data)
+        new_user = User(username=form.username.data, email=form.email.data, password=password)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('homepage'))
+    return render_template("register.html", current_user=current_user, form=form)
 
 @app.route("/profile")
 def profile():

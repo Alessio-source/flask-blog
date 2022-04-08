@@ -15,3 +15,9 @@ class PostForm(FlaskForm):
     subtitle = StringField('Sottotitolo', validators=[Length(max=350, message="La lunghezza del sottotitolo supera i 350 caratteri")])
     content = TextAreaField('Contenuto', validators=[DataRequired("Campo obbligatorio!")])
     submit = SubmitField('Salva')
+
+class RegisterForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired("Campo obbligatorio!")])
+    email = StringField('Email', validators=[DataRequired("Campo obbligatorio!")])
+    password = PasswordField('Password', validators=[DataRequired("Campo obbligatorio!")])
+    submit = SubmitField('Registrati')
