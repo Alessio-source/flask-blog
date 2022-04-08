@@ -1,0 +1,40 @@
+{% extends 'partials/page.html' %}
+
+{% block page_title %}Login{% endblock %}
+
+{% block head_block %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/log_reg.css')}}">
+{% endblock %}
+
+{% block content %}
+    
+    <main class="container">
+        
+        <form class="box" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+            
+            <h2>Login</h2>
+
+            <div class="input_container">
+                {{ form.email.label }}
+                {{ form.email }}
+            </div>
+
+            <div class="input_container">
+                {{ form.password.label }}
+                {{ form.password }}
+            </div>
+
+            <div class="input_container">
+                {{ form.remember_me.label }}
+                {{ form.remember_me }}
+            </div>
+
+            {{ form.submit }}
+
+            <a href="/register">Non hai un account? registrati!</a>
+        </form>
+
+    </main>
+
+{% endblock %}

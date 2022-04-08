@@ -1,0 +1,17 @@
+{% extends 'partials/page.html' %}
+
+{% block page_title %}Login{% endblock %}
+
+{% block head_block %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/log_reg.css')}}">
+{% endblock %}
+
+{% block content %}
+    
+    <main class="container">
+        
+        <a href="/logout">Logout</a>
+        
+    </main>
+
+{% endblock %}

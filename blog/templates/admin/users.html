@@ -1,0 +1,42 @@
+{% extends 'partials/adminpage.html' %}
+
+{% block page_title %}Utenti{% endblock %}
+
+{% block content %}
+    <h2>Lista utenti</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Username</td>
+                <td>Email</td>
+                <td>Modifica</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>
+                        {{user.id}}
+                    </td>
+                    <td>
+                        {{user.username}}
+                    </td>
+                    <td>
+                        {{user.email}}
+                    </td>
+                    <td>
+                        <a href="/admin/user/{{ user.id }}/edit" class="material-icons" >edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>li_id = "user";</script>
+{% endblock %}

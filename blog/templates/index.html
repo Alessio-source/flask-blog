@@ -1,0 +1,48 @@
+{% extends 'partials/page.html' %}
+
+{% block page_title %}Homepage{% endblock %}
+
+{% block head_block %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}">
+{% endblock %}
+
+{% block content %}
+
+
+<main>
+        <section class="slider">
+        
+            <div class="item" id="slider-item-1">
+                <a href="#">
+                    <img class="slider-img" src="{{ url_for('static', filename='imgs/background_slider_1.jpg') }}" >
+                    <div class="container">
+                        <div>
+                            <h2>Titolo</h2>
+                            {{ lipsum(n=1) }}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <img class="divider-white-bottom" src="{{ url_for('static', filename='imgs/divider-white-bottom.svg') }}" />
+        </section>
+        
+        <section class="motto container">
+            <h2>Blog</h2>
+            <h4>{{ lipsum(n=1, min=5, max=12) }}</h4>
+        </section>
+
+        <section class="last-news container">
+            <h2>Ultime Notizie</h2>
+
+            {% for post in posts %}
+                <div class="card">
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.body }}</p>
+                </div>
+            {% endfor %}
+
+        </section>
+    </main>
+
+{% endblock %}

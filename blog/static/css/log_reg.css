@@ -1,0 +1,66 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .box {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    max-width: 300px;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #516A61;
+    color: white;
+}
+
+main .box .input_container {
+    align-self: flex-start;
+    margin-bottom: 15px;
+}
+main .box .input_container input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    border-bottom: 3px solid #a98561;
+    background-color: transparent;
+    color: white;
+}
+main .box .input_container input::placeholder {
+    color: white;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #516A61 inset;
+}
+main .box .input_container input[type="checkbox"] {
+    width: auto;
+}
+
+main .box input[type="submit"] {
+    width: 120px;
+    padding: 8px;
+    margin-top: 5px;
+    outline: 0;
+    border: 0;
+    background-color: #a98561;
+    border-radius: 5px;
+    color: white;
+}
+
+main .box a {
+    margin-top: 15px;
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s linear;
+}
+
+main .box a:hover {
+    color: #CCC3A0;
+}

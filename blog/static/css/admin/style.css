@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Kufam:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #516A61;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(52, 52, 52); 
+    border-radius: 5px;
+}
+
+body {
+    font-family: 'Kufam', sans-serif;
+}
+
+main {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+main .left {
+    width: 20%;
+    height: 100vh;
+    background-color: #516A61;
+    color: white;
+    padding: 10px 0;
+}
+main .left h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+main .left ul {
+    list-style: none;
+}
+main .left ul li:first-child {
+    border-top: 1px solid white;
+}
+main .left ul li.active {
+    background-color: rgba(52, 52, 52, 0.4);
+}
+main .left ul li {
+    border-bottom: 1px solid white;
+    padding: 15px 20px;
+}
+main .left ul li a {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    color: white;
+    text-decoration: none;
+}
+
+main .right {
+    width: 80%;
+    height: 100vh;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+main .right .input_container input:not([type="checkbox"]),
+main .right .input_container textarea {
+    padding: 5px;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    border-bottom: 3px solid #a98561;
+}
+
+main .right .input_container textarea {
+    width: 100%;
+    height: 400px;
+    border-top: 1px solid #a98561;
+    border-left: 1px solid #a98561;
+    border-right: 1px solid #a98561;
+    border-radius: 5px;
+    resize: none;
+}
+
+main .right .input_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+main .right input[type="submit"] {
+    border: 0;
+    width: 80px;
+    padding: 10px 0;
+    background-color: #a98561;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+main .right .bottom_buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+main .right .goBack {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    margin-right: 15px;
+}
+
+main .right .add {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: black;
+    text-decoration: none;
+}
+
+main .right .post a {
+    display: inline-block;
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 5px;
+    background-color: #a98561;
+    text-decoration: none;
+    color: white;
+}
+
+main .right .chars{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+main .right .chars canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+main .right table td {
+    border: 1px solid black;
+    margin: 0;
+    padding: 5px;
+}
+main .right table td a {
+    color: black;
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}

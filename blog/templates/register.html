@@ -1,0 +1,38 @@
+{% extends 'partials/page.html' %}
+
+{% block page_title %}Login{% endblock %}
+
+{% block head_block %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/log_reg.css')}}">
+{% endblock %}
+
+{% block content %}
+    
+    <main class="container">
+        
+        <form class="box" action="/register_post" method="get">
+            <h2>Registrazione</h2>
+
+            <div class="input_container">
+                <label for="username">Nome utente</label>
+                <input type="text" name="username" id="username" placeholder="inserisci il tuo nome utente" required/>
+            </div>
+            
+            <div class="input_container">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="inserisci la tua email" required/>
+            </div>
+
+            <div class="input_container">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="inserisci la tua password" required/>
+            </div>
+
+            <input type="submit" value="registrati" />
+
+            <a href="/login">Non hai già un account? accedi!</a>
+        </form>
+
+    </main>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'partials/adminpage.html' %}
+
+{% block page_title %}Post{% endblock %}
+
+{% block content %}
+    <h2>Creazione articolo</h2>
+    
+    {% for error in form.title.errors %}
+        <span class="text-danger">{{ error }}</span>
+    {% endfor %}
+
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="input_container">
+            {{ form.title.label }}
+            {{ form.title }}
+        </div>
+
+        <div class="input_container">
+            {{ form.subtitle.label }}
+            {{ form.subtitle }}
+        </div>
+
+        <div class="input_container">
+            {{ form.content.label }}
+            {{ form.content }}
+        </div>
+
+        <span class="bottom_buttons">
+            <a href="/admin/posts" class="goBack"><span class="material-icons">arrow_back</span> Torna indietro</a>
+            {{ form.submit }}
+        </span>
+
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script>li_id = "post";</script>
+{% endblock %}

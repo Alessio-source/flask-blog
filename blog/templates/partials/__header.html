@@ -1,0 +1,25 @@
+<header>
+    <nav class="container">
+        <a href="/" class="left">
+            <img src="{{ url_for('static', filename='imgs/icon.png')  }}" />
+            <p class="title" >Blog</p>
+        </a>
+
+        <div class="right">
+            <ul class="menu-nav">
+                <li class="item"><a href="#">Home</a></li>
+                <li class="item"><a href="#">Blog</a></li>
+                <li class="item"><a href="#">Link</a></li>
+                <li class="item"><a href="#">Link</a></li>
+                {% if current_user.is_authenticated %}
+                    <li class="item"><a href="/profile">Profilo</a></li>
+                    {% if current_user.role_id == 2 or current_user.role_id == 3 %}
+                        <li class="item"><a href="/admin">Pannello Admin</a></li>
+                    {% endif %}
+                {% else %}
+                    <li class="item"><a href="/login">Accedi</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
