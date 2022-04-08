@@ -1,14 +1,21 @@
+from webbrowser import get
 from flask import render_template, redirect, flash, url_for, session, request, abort
 from flask_login import current_user, login_user, logout_user, login_required
 from blog import app, db
 from blog.forms import LoginForm, PostForm, RegisterForm
 from blog.models import User, Post
+from blog.utils import title_slugifier
 import datetime
 
 @app.route("/")
 def homepage():
-    posts = [{"title": "titolo", "body": "corpo"}, {"title": "titolo2", "body": "corpo2"}]
+    posts = Post.query.all()
     return render_template("index.html", posts=posts, current_user=current_user)
+
+@app.route("/post/<string:slug>")
+def post_detail(slug):
+    post = Post.query.filter_by(slug=slug).first_or_404()
+    return render_template('post.html', post=post)
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -77,7 +84,7 @@ def post_create():
         if current_user.role_id == 2 or current_user.role_id == 3:
             form = PostForm()
             if form.validate_on_submit():
-                new_post = Post(title=form.title.data, subtitle=form.subtitle.data, content=form.content.data, author_id=current_user.id)
+                new_post = Post(title=form.title.data, subtitle=form.subtitle.data, content=form.content.data, author_id=current_user.id, slug=title_slugifier(form.title.data))
                 db.session.add(new_post)
                 db.session.commit()
                 return redirect(url_for('posts'))
