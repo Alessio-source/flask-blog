@@ -3,8 +3,12 @@
 {% block page_title %}Post{% endblock %}
 
 {% block content %}
-    <h2>Creazione articolo</h2>
-    
+    {% if request.path == "/admin/post/create" %}
+        <h2>Creazione articolo</h2>
+    {% else %}
+        <h2>Modifica articolo</h2>
+    {% endif %}
+
     {% for error in form.title.errors %}
         <span class="text-danger">{{ error }}</span>
     {% endfor %}
