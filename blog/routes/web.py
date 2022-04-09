@@ -2,8 +2,8 @@ from webbrowser import get
 from flask import render_template, redirect, flash, url_for, session, request, abort
 from flask_login import current_user, login_user, logout_user, login_required
 from blog import app, db
-from blog.forms import LoginForm, PostForm, RegisterForm, CommentForm
-from blog.models import User, Post, Comment
+from blog.forms import LoginForm, PostForm, UserForm, CommentForm
+from blog.models import User, Post, Comment, Role
 from blog.utils import title_slugifier, img_upload
 import datetime
 
@@ -78,7 +78,7 @@ def logout():
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('homepage'))
-    form = RegisterForm()
+    form = UserForm()
     if form.validate_on_submit():
         password = User.password_hash(form.password.data)
         new_user = User(username=form.username.data, email=form.email.data, password=password)
@@ -204,3 +204,37 @@ def users():
             return render_template("/admin/users.html", current_user=current_user, users=users)
 
     return redirect(url_for('homepage'))
+
+@app.route("/admin/user/<int:user_id>/edit", methods=["POST", "GET"])
+def admin_user_edit(user_id):
+    if current_user.is_authenticated:
+        if current_user.role_id == 2:
+            user = User.query.get_or_404(user_id)
+            form = UserForm()
+            form.password.data = user.password
+            print(form.errors)
+
+            if form.is_submitted():
+                print("submitted")
+
+            if form.validate():
+                print("valid")
+
+            print(form.errors)
+            if form.validate_on_submit():
+                user.username = form.username.data
+                user.email = form.email.data
+                user.role_id = form.role_id.data
+                db.session.commit()
+                return redirect(url_for('users'))
+     
+            form.role_id.choices = [(role.id, role.role_name) for role in Role.query.all()]
+            form.role_id.default = user.role_id
+            form.process()
+            form.username.data = user.username
+            form.email.data = user.email
+            return render_template("/admin/useredit.html", current_user=current_user, form=form)
+    
+    return redirect(url_for('homepage'))
+
+

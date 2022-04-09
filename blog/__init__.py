@@ -15,4 +15,3 @@ Misaka(app)
 
 from blog.routes import web
 from blog.models import Role, User, Post, Comment
-

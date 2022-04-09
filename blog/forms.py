@@ -2,8 +2,9 @@ from ast import Pass
 from email import message
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import BooleanField, PasswordField, StringField, SubmitField, TextAreaField
+from wtforms import BooleanField, PasswordField, StringField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, Length
+from blog.models import Role
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired("Campo obbligatorio!")])
@@ -19,9 +20,10 @@ class PostForm(FlaskForm):
     card_cover = FileField('Copertina homepage', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
     submit = SubmitField('Salva')
 
-class RegisterForm(FlaskForm):
+class UserForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired("Campo obbligatorio!")])
     email = StringField('Email', validators=[DataRequired("Campo obbligatorio!")])
+    role_id = SelectField('Ruolo', choices=[], coerce=int, validate_choice=False)
     password = PasswordField('Password', validators=[DataRequired("Campo obbligatorio!")])
     submit = SubmitField('Registrati')
 

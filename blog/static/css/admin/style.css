@@ -69,7 +69,8 @@ main .right {
 }
 
 main .right .input_container input:not([type="checkbox"]),
-main .right .input_container textarea {
+main .right .input_container textarea,
+main .right .input_container select {
     padding: 5px;
     border: 0;
     outline: 0;

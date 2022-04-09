@@ -1,0 +1,37 @@
+{% extends 'partials/adminpage.html' %}
+
+{% block page_title %}Utenti{% endblock %}
+
+{% block content %}
+    <h2>Modifica utente</h2>
+
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <section class="input_container">
+            {{form.username.label}}
+            {{form.username}}
+        </section>
+
+        <section class="input_container">
+            {{form.email.label}}
+            {{form.email}}
+        </section>
+
+        <section class="input_container">
+            {{form.role_id.label}}
+            {{form.role_id}}
+        </section>
+
+        <span class="bottom_buttons">
+            <a href="{{ url_for('users') }}" class="goBack"><span class="material-icons">arrow_back</span> Torna indietro</a>
+            {{ form.submit }}
+        </span>
+
+    </form>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>li_id = "user";</script>
+{% endblock %}
