@@ -7,10 +7,8 @@
 
         <div class="right">
             <ul class="menu-nav">
-                <li class="item"><a href="#">Home</a></li>
-                <li class="item"><a href="#">Blog</a></li>
-                <li class="item"><a href="#">Link</a></li>
-                <li class="item"><a href="#">Link</a></li>
+                <li class="item"><a href="/">Home</a></li>
+                <li class="item"><a href="/blog">Blog</a></li>
                 {% if current_user.is_authenticated %}
                     <li class="item"><a href="/profile">Profilo</a></li>
                     {% if current_user.role_id == 2 or current_user.role_id == 3 %}

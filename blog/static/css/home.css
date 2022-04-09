@@ -69,6 +69,7 @@ main .last-news .card {
     background-color: #a98561;
     text-decoration: none;
     color: white;
+    margin-bottom: 10px;
 }
 
 main .last-news .card .post_container {

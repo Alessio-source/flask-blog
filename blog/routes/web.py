@@ -9,8 +9,25 @@ import datetime
 
 @app.route("/")
 def homepage():
-    posts = Post.query.all()
+    posts = Post.query.order_by(Post.id.desc()).paginate(1, 7, True)
     return render_template("index.html", posts=posts, current_user=current_user)
+
+@app.route("/blog")
+def blog():
+    page_number = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.id.desc()).paginate(page_number, 10, True)
+
+    if posts.has_next:
+        next_page = url_for('blog', page=posts.next_num)
+    else:
+        next_page = None
+
+    if posts.has_prev:
+        prev_page = url_for('blog', page=posts.prev_num)
+    else:
+        prev_page = None
+
+    return render_template("blog.html", posts=posts, current_user=current_user, prev_page=prev_page, next_page=next_page)
 
 @app.route("/post/<string:slug>", methods=["POST", "GET"])
 def post_detail(slug):

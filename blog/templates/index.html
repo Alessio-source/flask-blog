@@ -35,7 +35,7 @@
         <section class="last-news container">
             <h2>Ultime Notizie</h2>
 
-            {% for post in posts %}
+            {% for post in posts.items %}
                 <a href="/post/{{post.slug}}" class="card">
                     <div class="post_container">
                         <h3>{{ post.title }}</h3>
