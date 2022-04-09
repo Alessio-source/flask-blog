@@ -7,15 +7,45 @@
 {% endblock %}
 
 {% block content %}
-    
+
     <main class="container">
         
         <h2 class="title">{{post.title}}</h2>
         <h4 class="subtitle">{{post.subtitle}}</h4>
 
+        <img src="{{ url_for('static', filename='imgs/posts/' + post.image) }}" class="img-post" alt="">
+
         <div class="content">
             {{post.content|markdown}}
         </div>
+
+        <h4>Commenti dei lettori</h4>
+        <section class="comments">
+            {% if current_user.is_authenticated and showTextarea == True %}    
+                <h4>Lascia un commento</h4>
+                <form method="POST" novalidate>
+                    {{ form.hidden_tag() }}
+
+                    {{ form.content }}
+                    {{ form.submit }}
+                </form>
+            {% endif %}
+            
+            {% if comments %}    
+                {% for comment in comments %}    
+                    <div class="comment" >
+                        <div class="top">
+                            Autore: {{ comment.user.username }}
+                        </div>
+
+                        <p class="bottom">{{ comment.content }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="none">Non ci sono commenti per questo articolo</div>
+            {% endif %}
+
+        </section>
         
     </main>
 

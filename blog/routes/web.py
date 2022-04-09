@@ -2,8 +2,8 @@ from webbrowser import get
 from flask import render_template, redirect, flash, url_for, session, request, abort
 from flask_login import current_user, login_user, logout_user, login_required
 from blog import app, db
-from blog.forms import LoginForm, PostForm, RegisterForm
-from blog.models import User, Post
+from blog.forms import LoginForm, PostForm, RegisterForm, CommentForm
+from blog.models import User, Post, Comment
 from blog.utils import title_slugifier, img_upload
 import datetime
 
@@ -12,10 +12,30 @@ def homepage():
     posts = Post.query.all()
     return render_template("index.html", posts=posts, current_user=current_user)
 
-@app.route("/post/<string:slug>")
+@app.route("/post/<string:slug>", methods=["POST", "GET"])
 def post_detail(slug):
+    form = CommentForm()
     post = Post.query.filter_by(slug=slug).first_or_404()
-    return render_template('post.html', post=post)
+    if form.validate_on_submit():
+        if current_user.is_authenticated:
+            if Comment.query.filter_by(post_id=post.id, author_id=current_user.id):
+                return redirect(url_for('post_detail', slug=slug))
+            new_comment = Comment(author_id=current_user.id, post_id=post.id, content=form.content.data)
+            db.session.add(new_comment)
+            db.session.commit()
+
+    comments = Comment.query.filter_by(post_id=post.id).all()
+
+    showTextarea = True
+    i = 0
+    while i<len(comments):
+        user = User.query.get(comments[i].author_id)
+        if user.id == current_user.id:
+            showTextarea = False
+        comments[i].user = user
+        i += 1
+
+    return render_template('post.html', post=post, form=form, comments=comments, showTextarea=showTextarea)
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -117,7 +137,7 @@ def post_edit(post_id):
                     post.title = form.title.data
                     post.subtitle = form.subtitle.data
                     post.content = form.content.data
-                    
+
                     if form.image.data:
                         try:
                             image = img_upload(form.image.data)

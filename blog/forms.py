@@ -24,3 +24,7 @@ class RegisterForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired("Campo obbligatorio!")])
     password = PasswordField('Password', validators=[DataRequired("Campo obbligatorio!")])
     submit = SubmitField('Registrati')
+
+class CommentForm(FlaskForm):
+    content = TextAreaField('Contenuto', validators=[DataRequired("Campo obbligatorio!")])
+    submit = SubmitField('Invia')

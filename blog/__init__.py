@@ -14,5 +14,5 @@ login_manager = LoginManager(app)
 Misaka(app)
 
 from blog.routes import web
-from blog.models import Role, User, Post
+from blog.models import Role, User, Post, Comment
 
