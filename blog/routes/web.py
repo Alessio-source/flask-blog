@@ -212,15 +212,6 @@ def admin_user_edit(user_id):
             user = User.query.get_or_404(user_id)
             form = UserForm()
             form.password.data = user.password
-            print(form.errors)
-
-            if form.is_submitted():
-                print("submitted")
-
-            if form.validate():
-                print("valid")
-
-            print(form.errors)
             if form.validate_on_submit():
                 user.username = form.username.data
                 user.email = form.email.data

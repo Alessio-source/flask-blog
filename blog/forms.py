@@ -4,7 +4,6 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import BooleanField, PasswordField, StringField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, Length
-from blog.models import Role
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired("Campo obbligatorio!")])
