@@ -13,7 +13,7 @@
         <span class="text-danger">{{ error }}</span>
     {% endfor %}
 
-    <form method="POST" novalidate>
+    <form method="POST" enctype="multipart/form-data" novalidate>
         {{ form.hidden_tag() }}
 
         <div class="input_container">
@@ -30,6 +30,16 @@
             {{ form.content.label }}
             {{ form.content }}
         </div>
+
+        <div class="input_container">
+            {{ form.image.label }}
+            {{ form.image }}
+        </div> 
+
+        <div class="input_container">
+            {{ form.card_cover.label }}
+            {{ form.card_cover }}
+        </div> 
 
         <span class="bottom_buttons">
             <a href="/admin/posts" class="goBack"><span class="material-icons">arrow_back</span> Torna indietro</a>

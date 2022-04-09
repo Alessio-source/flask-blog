@@ -37,10 +37,16 @@
 
             {% for post in posts %}
                 <a href="/post/{{post.slug}}" class="card">
-                    <h3>{{ post.title }}</h3>
-                    {% if post.subtitle != none or post.subtitle != "" %}
-                        <p>{{ post.subtitle }}</p>
-                    {% endif %}
+                    <div class="post_container">
+                        <h3>{{ post.title }}</h3>
+                        {% if post.subtitle %}
+                            <p>{{ post.subtitle }}</p>
+                        {% endif %}
+
+                        {% if post.card_cover %}
+                            <img src="{{ url_for('static', filename='imgs/posts/' + post.card_cover) }}" class="cover">
+                        {% endif %}
+                    </div>
                 </a>
             {% endfor %}
 

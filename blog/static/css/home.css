@@ -63,6 +63,33 @@ main .last-news h2 {
     text-align: center;
 }
 
+main .last-news .card {
+    padding: 20px;
+    border: none;
+    background-color: #a98561;
+    text-decoration: none;
+    color: white;
+}
+
+main .last-news .card .post_container {
+    position: relative;
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+main .last-news .card .post_container img {
+    position: absolute;
+    bottom: -120px;
+    right: -40px;
+    height: 300px;
+    transition: all 0.5s linear;
+}
+main .last-news .card .post_container:hover img {
+    transform: scale(1.2);
+}
+
 @media screen and (min-width: 2204px) {
     .slider {
         height: 1200px;

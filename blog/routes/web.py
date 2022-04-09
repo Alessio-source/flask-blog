@@ -4,7 +4,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from blog import app, db
 from blog.forms import LoginForm, PostForm, RegisterForm
 from blog.models import User, Post
-from blog.utils import title_slugifier
+from blog.utils import title_slugifier, img_upload
 import datetime
 
 @app.route("/")
@@ -85,6 +85,19 @@ def post_create():
             form = PostForm()
             if form.validate_on_submit():
                 new_post = Post(title=form.title.data, subtitle=form.subtitle.data, content=form.content.data, author_id=current_user.id, slug=title_slugifier(form.title.data))
+                if form.image.data:
+                    try:
+                        image = img_upload(form.image.data)
+                        new_post.image = image
+                    except Exception:
+                        flash("C'è stato un problema nell'upload del background")
+                if form.card_cover.data:
+                    try:
+                        card_cover = img_upload(form.card_cover.data)
+                        new_post.card_cover = card_cover
+                    except Exception:
+                        flash("C'è stato un problema nell'upload della cover")
+
                 db.session.add(new_post)
                 db.session.commit()
                 return redirect(url_for('posts'))
@@ -104,6 +117,20 @@ def post_edit(post_id):
                     post.title = form.title.data
                     post.subtitle = form.subtitle.data
                     post.content = form.content.data
+                    
+                    if form.image.data:
+                        try:
+                            image = img_upload(form.image.data)
+                            post.image = image
+                        except Exception:
+                            flash("C'è stato un problema nell'upload del background")
+                    if form.card_cover.data:
+                        try:
+                            card_cover = img_upload(form.card_cover.data)
+                            post.card_cover = card_cover
+                        except Exception:
+                            flash("C'è stato un problema nell'upload della cover")
+                    
                     db.session.commit()
                     return redirect(url_for('posts'))
 
