@@ -1,16 +1,28 @@
 {% extends 'partials/page.html' %}
 
-{% block page_title %}Login{% endblock %}
+{% block page_title %}Profilo{% endblock %}
 
 {% block head_block %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/log_reg.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css')}}">
 {% endblock %}
 
 {% block content %}
     
     <main class="container">
         
-        <a href="/logout">Logout</a>
+        <div class="left box">
+            <h2>Profilo</h2>
+            <a href="/profile">Informazioni</a>
+            <a href="/profile/edit">Modifica profilo</a>
+            <a href="/logout">Logout</a>
+        </div>
+        
+        <div class="right">
+            <p>Username: <strong>{{current_user.username}}</strong></p>
+            <p>Email: {{current_user.email}}</p>
+            <p>Ruolo: {{role.role_name}}</p>
+        </div>
+
         
     </main>
 

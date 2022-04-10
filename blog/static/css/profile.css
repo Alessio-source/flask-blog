@@ -1,0 +1,61 @@
+main {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+}
+main .left , main .right { 
+    box-shadow: 0px 0px 17px 5px rgba(0,0,0,0.48);
+}
+    
+main .left {
+    width: calc(20% - 10px);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #516A61;
+    border-radius: 5px;
+    color: #fff;
+}
+main .left a:first-of-type {
+    border-top: 1px solid #fff;
+}
+main .left a { 
+    padding: 10px 5px;
+    text-decoration: none;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+}
+
+main .right {
+    width: calc(80% - 10px);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+main .right input:not([type="submit"]) {
+    padding: 5px;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    border-bottom: 3px solid #a98561;
+}
+
+main .right .label { 
+    display: block;
+    margin-top: 20px;
+}
+
+main .right .input:last-of-type {
+    margin-bottom: 30px;
+}
+
+main .right input[type="submit"] { 
+    width: 120px;
+    padding: 10px 0;
+    margin-top: 30px;
+    background-color: #a98561;
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+}

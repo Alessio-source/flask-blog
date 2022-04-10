@@ -24,7 +24,9 @@ class UserForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired("Campo obbligatorio!")])
     role_id = SelectField('Ruolo', choices=[], coerce=int, validate_choice=False)
     password = PasswordField('Password', validators=[DataRequired("Campo obbligatorio!")])
+    new_password = PasswordField('Nuova Password')
     submit = SubmitField('Registrati')
+    submit_2 = SubmitField('Salva')
 
 class CommentForm(FlaskForm):
     content = TextAreaField('Contenuto', validators=[DataRequired("Campo obbligatorio!")])

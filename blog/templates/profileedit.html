@@ -1,0 +1,74 @@
+{% extends 'partials/page.html' %}
+
+{% block page_title %}Modifica{% endblock %}
+
+{% block head_block %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css')}}">
+{% endblock %}
+
+{% block content %}
+    
+    <main class="container">
+        
+        <div class="left box">
+            <h2>Profilo</h2>
+            <a href="/profile">Informazioni</a>
+            <a href="/profile/{{current_user.id}}/edit">Modifica profilo</a>
+            <a href="/logout">Logout</a>
+        </div>
+        
+        <div class="right">
+            <h2>Modifica profilo</h2>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="error">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <small>* = campo obbligatorio</small>
+
+            <form method="POST" novalidate>
+                {{ form.hidden_tag() }}
+                
+                <div class="input">
+                    <div class="label">
+                        *{{form.username.label}}
+                    </div>
+                    {{form.username}}
+                </div>
+
+                <div class="input">
+                    <div class="label">
+                        *{{form.email.label}}
+                    </div>
+                    {{form.email}}
+                </div>
+
+                <div class="input">
+                    <div class="label">
+                        *{{form.password.label}} corrente
+                    </div>
+                    {{form.password}}
+                </div>
+
+
+                <div class="input">
+                    <div class="label">
+                        {{form.new_password.label}}
+                    </div>
+                    {{form.new_password}}
+                </div>
+
+                <div class="input">
+                    {{form.submit_2}}
+                </div>
+            </form>
+        </div>
+
+        
+    </main>
+
+{% endblock %}

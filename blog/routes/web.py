@@ -89,7 +89,30 @@ def register():
 
 @app.route("/profile")
 def profile():
-    return render_template("profile.html", current_user=current_user)
+    role = Role.query.get(current_user.role_id)
+    return render_template("profile.html", current_user=current_user, role=role)
+
+@app.route("/profile/edit", methods=["POST", "GET"])
+def profile_edit():
+    if current_user.is_authenticated:
+        form = UserForm()
+        if form.validate_on_submit():
+            if current_user.check_password(form.password.data):
+                user = User.query.get(current_user.id)
+                user.username = form.username.data
+                user.email = form.email.data
+                if form.new_password.data:
+                    user.set_password_hash(form.new_password.data)
+                
+                db.session.add(user)
+                db.session.commit()
+                return redirect(url_for('profile'))
+            else:
+                flash('Password errata')
+                return redirect(url_for('profile_edit'))
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+        return render_template("profileedit.html", current_user=current_user, form=form)
 
 @app.route("/admin")
 def admin():
@@ -237,5 +260,5 @@ def user_delete(user_id):
             db.session.delete(user)
             db.session.commit()
             return redirect(url_for('users'))
-            
+
     return redirect(url_for('homepage'))
