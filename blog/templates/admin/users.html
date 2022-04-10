@@ -12,6 +12,7 @@
                 <td>Username</td>
                 <td>Email</td>
                 <td>Modifica</td>
+                <td>Cancella</td>
             </tr>
         </thead>
 
@@ -29,6 +30,9 @@
                     </td>
                     <td>
                         <a href="/admin/user/{{ user.id }}/edit" class="material-icons" >edit</a>
+                    </td>
+                    <td>
+                        <a href="/admin/user/{{ user.id }}/delete" class="material-icons" >delete</a>
                     </td>
                 </tr>
             {% endfor %}

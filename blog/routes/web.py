@@ -229,3 +229,13 @@ def admin_user_edit(user_id):
     return redirect(url_for('homepage'))
 
 
+@app.route('/admin/user/<int:user_id>/delete')
+def user_delete(user_id):
+    if current_user.is_authenticated:
+        if current_user.role_id == 2:
+            user = User.query.get_or_404(user_id)
+            db.session.delete(user)
+            db.session.commit()
+            return redirect(url_for('users'))
+            
+    return redirect(url_for('homepage'))
