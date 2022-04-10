@@ -8,7 +8,6 @@
 
 {% block content %}
 
-
 <main>
         <section class="slider">
         
@@ -17,8 +16,8 @@
                     <img class="slider-img" src="{{ url_for('static', filename='imgs/background_slider_1.jpg') }}" >
                     <div class="container">
                         <div>
-                            <h2>Titolo</h2>
-                            {{ lipsum(n=1) }}
+                            <h2>{{settings[2].value_setting}}</h2>
+                            {{settings[3].value_setting}}
                         </div>
                     </div>
                 </a>
@@ -29,7 +28,7 @@
         
         <section class="motto container">
             <h2>Blog</h2>
-            <h4>{{ lipsum(n=1, min=5, max=12) }}</h4>
+            <h4>{{settings[1].value_setting}}</h4>
         </section>
 
         <section class="last-news container">

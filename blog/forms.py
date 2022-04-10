@@ -31,3 +31,11 @@ class UserForm(FlaskForm):
 class CommentForm(FlaskForm):
     content = TextAreaField('Contenuto', validators=[DataRequired("Campo obbligatorio!")])
     submit = SubmitField('Invia')
+
+    
+class SettingsForm(FlaskForm):
+    blog_name = StringField('Nome Blog', validators=[DataRequired("Campo obbligatorio!")])
+    blog_motto = StringField('Motto', validators=[DataRequired("Campo obbligatorio!")])
+    blog_title_homepage = StringField('Titotlo sulla homepage', validators=[DataRequired("Campo obbligatorio!")])
+    blog_subtitle_homepage = TextAreaField('Sotto titolo sulla homepage', validators=[DataRequired("Campo obbligatorio!")])
+    submit = SubmitField('Salva')

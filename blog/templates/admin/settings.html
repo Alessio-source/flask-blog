@@ -1,0 +1,41 @@
+{% extends 'partials/adminpage.html' %}
+
+{% block page_title %}Impostazioni{% endblock %}
+
+{% block content %}
+    <h2>Impostazioni sito</h2>
+
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="input_container">
+            {{ form.blog_name.label }}
+            {{ form.blog_name }}
+        </div>
+
+        <div class="input_container">
+            {{ form.blog_motto.label }}
+            {{ form.blog_motto }}
+        </div>
+
+        <div class="input_container">
+            {{ form.blog_title_homepage.label }}
+            {{ form.blog_title_homepage }}
+        </div>
+
+        <div class="input_container">
+            {{ form.blog_subtitle_homepage.label }}
+            {{ form.blog_subtitle_homepage }}
+        </div>
+
+        <span class="bottom_buttons">
+            {{ form.submit }}
+        </span>
+
+    </form>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>li_id = "settings";</script>
+{% endblock %}

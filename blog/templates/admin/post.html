@@ -9,10 +9,6 @@
         <h2>Modifica articolo</h2>
     {% endif %}
 
-    {% for error in form.title.errors %}
-        <span class="text-danger">{{ error }}</span>
-    {% endfor %}
-
     <form method="POST" enctype="multipart/form-data" novalidate>
         {{ form.hidden_tag() }}
 
