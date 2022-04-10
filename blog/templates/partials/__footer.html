@@ -3,11 +3,16 @@
         <section>
             <h4>Link utili</h4>
             <ul>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog">Blog</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="/profile">Profilo</a></li>
+                    {% if current_user.role_id == 2 or current_user.role_id == 3 %}
+                        <li><a href="/admin">Pannello Admin</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="/login">Accedi</a></li>
+                {% endif %}
             </ul>
         </section>
 
@@ -30,6 +35,10 @@
         </section>
     </div>
     <div class="bottom">
-        &copy; Blog
+        &copy; Blog-<span id="year"></span>
     </div>
+
+    <script>
+        document.getElementById('year').innerHTML = new Date().getFullYear();
+    </script>
 </footer>

@@ -28,7 +28,7 @@ body {
 }
 
 main {
-    min-height: calc(100vh - 281px);
+    min-height: calc(100vh - 257px);
 }
 
 header {
