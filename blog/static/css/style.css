@@ -31,6 +31,12 @@ main {
     min-height: calc(100vh - 257px);
 }
 
+.error_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 header {
     position: sticky;
     left: 0;
